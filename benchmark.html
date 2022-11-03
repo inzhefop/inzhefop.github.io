@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Benchmark - JS Universal</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito,wght@1,500&display=swap" rel="stylesheet"> 
+        <style>
+            html {
+                background-color: rgb(25, 28, 31);
+                color: aliceblue;
+                font-family: 'Nunito', sans-serif;
+            }
+
+            body {
+                margin: 0px;
+            }
+
+            #content {
+                width: 100vh;
+                margin: auto;
+            }
+
+            #out {
+                color: rgb(184, 184, 184);
+                margin-left: 75px;
+                margin-right: 50px;
+                font-size: larger;
+            }
+
+            #results {
+                color: rgb(226, 255, 213);
+                margin-left: 75px;
+                margin-right: 50px;
+                font-size: larger;
+            }
+
+            #start_button {
+                border: 0px solid transparent;
+                color: aliceblue;
+                background-color: rgb(14, 130, 54);
+                width: 110px;
+                height: 50px;
+                margin-left: 25px;
+                font-size: larger;
+            }
+
+            #start_button:hover {
+                transition: 0.2s;
+                filter: brightness(120%);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <h1 style="text-align: center;">Universal JS Math Benchmark</h1>
+            <button id="start_button" onclick="start(10)">Start (10)</button> <button id="start_button" onclick="start(50)">Start (50)</button> <button id="start_button" onclick="start(100)">Start (100)</button>
+            <div id="console">
+                <p id="results"></p>
+                <p id="out"></p>
+            </div>
+            
+        </div>
+    </body>
+    <script>
+        var results = [];
+
+        function start(a) {
+            results = [];
+            cycles = a;
+            document.getElementById("out").innerHTML = "";
+            for (var i = 0; i < cycles; i++) {
+                
+                var startTime = performance.now()
+                var x = 0;
+                while (x < 1000000000) {
+                    x++;
+                }
+                var endTime = performance.now()
+                var exe_time = (endTime - startTime);
+                document.getElementById("out").innerHTML = document.getElementById("out").innerHTML + i + "=>" + Math.round(exe_time) + "ms "
+                results.push(exe_time);
+            }
+
+            var middle = 0;
+            for (var i = 3; i < cycles; i++) {
+                middle = middle + results[i];
+            }
+            var middle = middle/(results.length - 3);
+            document.getElementById("results").innerHTML =  "Avarage Exe-Time: " + middle + "ms <br>" + "Score: " + Math.floor(((1/middle)*1000000)) + " points";
+            
+        }
+    </script>
+</html>
