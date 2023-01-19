@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Integralrechner</title>
+        <link rel="icon" href="https://www.svgrepo.com/show/309771/math-formula.svg">
+        <meta charset="utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="manifest" href="/manifest.webmanifest">
+        <meta name="theme-color" content="#1a73e8" />
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+       
+    </head>
+    <body>
+        <div id="content">
+            <div id="top">
+                <l>Numeric Integral (v.1.1)</l>
+            </div>
+            <div id="uebergang">
+                <div id="ug1"></div><div id="ug2"></div><div id="ug3"></div>
+            </div>
+            <div id="settings">
+                <div id="formel">
+                    <label>Equation (Variable: x)</label>
+                    <div class="formel-line">
+                        <label>f(x)= </label><input type="text" id="formel-input" name="input">
+                    </div>
+                    <div class="formel-line">
+                        <button class="sondersymbol" onclick="sqrt()" type="button">&#x221A;</button>
+                        <button class="sondersymbol" onclick="pi()" type="button">&#x3C0;</button>
+                        <button class="sondersymbol" onclick="e()" type="button">e</button>
+                        <button class="sondersymbol" onclick="exp()" type="button">x^x</button>
+                        <button class="sondersymbol" onclick="sin()" type="button">sin</button>
+                        <button class="sondersymbol" onclick="cos()" type="button">cos</button>
+                        <button class="sondersymbol" onclick="tan()" type="button">tan</button>
+                    </div>
+                    <div class="formel-line">
+                        <label>[f(x)]<sub>a</sub>: </label><input type="text" id="unteregrenze" name="input">
+                        <label>[f(x)]<sup>b</sup>: </label><input type="text" id="oberegrenze" name="input">
+                        <label>n= </label><input type="text" id="n" name="input">
+                    </div>
+                </div>
+                <div id="regel">
+                    <div id="br"></div>
+                    <div class="formel-line">
+                        <button class="switchbtn" onclick="modezurück()" type="button">&#9664;</button>
+                        <label id="mode"></label>
+                        <button class="switchbtn" onclick="modevor()" type="button">&#9654;</button>
+                        <div id="regel-container1">
+                            <div class="img-container"><img src="./images/rechteck.png" alt=""></div> <!--0.83, 0, 0.625, 2.5-->
+                            <div class="text-container">
+                                Bei dieser Methode werden unterhalb des Graphen Rechtecke eingefügt. Anschließend wird der Flächeninhalt aller Rechtecke zusammengerechnet.
+                                Diese Annährung wird nochmals dadurch genauer, dass man die höhe des Rechtecks immer bei x+0.5n festlegt (Statistik).
+                            </div>
+                        </div>
+                        <div id="regel-container2">
+                            <div class="img-container"><img src="./images/trapez.png" alt=""></div>
+                            <div class="text-container">
+                                Es wird für den jeweiligen Abschnitt jeweils ein Rechteck und ein Dreieck eingefügt, sodass sich ein Trapez ergibt.
+                                Erneut werden alle Flächeninhalte der Trapeze zusammengerechnet. Durch diese Methode soll das Ergebnis genauer werden, als mit der Rechtecksregel.
+                            </div>
+                        </div>
+                        <div id="regel-container3">
+                            <div class="img-container"><img src="./images/Simpsons_method_illustration.svg.png" alt=""></div>
+                            <div class="text-container">
+                                Für diese Integration wird durch 3 Punkten [f(a),f(m),f(b)] von der Funktion f(x) eine weitere leicht zu integrierende Parabel festgelegt.
+                                Die Simpson-Regel besagt, dass durch: S(f)=((b-a)/2)*(f(a)+4*f(b)+f(c)) das Integral annäherungsweise ausgerechnet werden kann.
+                            </div>
+                        </div>
+                        <div id="regel-container4">
+                            <div class="text-container2">Es gibt verschiedene Integrale, die nicht analytisch gelöst werden können:
+                                <br><br><button class="unsolvbtn" onclick="unsov1()">&#x222B;e<sup>x</sup>/x dx</button>
+                                <br><button class="unsolvbtn" onclick="unsov2()">&#x222B; e<sup>-x<sup>2</sup></sup> dx</button>
+                                <br><button class="unsolvbtn" onclick="unsov3()">&#x222B; sin(x)/x dx</button>
+                            </div>
+                            
+                        </div>
+                        <div id="regel-container5"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="uebergang2">
+                <div id="ug1"></div><div id="ug2"></div><div id="ug3"></div>
+            </div>
+                <div id="calcbar"></div>
+                <div class="greenstrip"></div>
+                <button id="calc" onclick="calc()" type="button">Rechnen!</button>
+                <div class="greenstrip"></div>
+                <div id="calcbar2"></div>
+                <div id="uebergang2">
+                    <div id="ug4"></div><div id="ug2"></div><div id="ug5"></div>
+                </div>
+            <div id="results">
+                <div id="graph">
+                    <div id="curve_chart" style="width: 100%; height: 100%"></div>
+                </div>
+                <div id="numbers">
+                    <label>Ergebnisse</label><button type="button" id="clear" onclick="clear1()">Leeren</button>
+                    <div class="result1"><l id="result1"></l></div>
+                    <div class="result"><l id="result2"></l></div>
+                    <div class="result"><l id="result3"></l></div>
+                    <div class="result"><l id="result4"></l></div>
+                    <div class="result"><l id="result5"></l></div>
+                    <div class="result"><l id="result6"></l></div>
+                    <div class="result"><l id="result7"></l></div>
+                    <div class="result"><l id="result8"></l></div>
+                    <div class="result"><l id="result9"></l></div>
+                    <div class="result"><l id="result10"></l></div>
+                    <div class="result"><l id="result11"></l></div>
+                    <div class="result"><l id="result12"></l></div>
+                </div>
+            </div>
+            <div id="credits">
+                Integral Calculator by Leon K.
+            </div>
+        </div>
+         <script src="./script.js"></script>
+    </body>
+</html>
+

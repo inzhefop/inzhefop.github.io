@@ -1,0 +1,30 @@
+html {
+    background-color: rgb(23, 25, 27);
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    color: aliceblue;
+    margin: 20px;
+}
+
+#credits {
+    color: aliceblue;
+    font-weight: bold;
+    bottom: 0;
+    margin: 5px;
+    left: 0;
+    position: absolute;
+    z-index: 100;
+}
+
+#projects {
+    color: aliceblue;
+    margin-left: 10px;
+}
+
+#projects a {
+    color: aliceblue;
+    text-decoration: none;
+    line-height: 25px;
+}
